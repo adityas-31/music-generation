@@ -60,3 +60,15 @@ def build_network(self):
     # defining a loss function
     # because this is multi class classification, cross entropy is the loss function
     # it measures the difference between two/more probability distributions
+
+    loss_fct = tf.nn.seq2seq.sequence_loss(
+        self.outputs,
+        self.targets,
+        softmax_loss_function=tf.nn.softmax.cross_entropy_with_logits
+    )
+
+    # we have a sequence of notes, looking at each note predict what
+    # the next note will be. we want to minimise the loss function
+    # by looking at the difference between predicted actual next note
+
+    # the notes are represented by floats
